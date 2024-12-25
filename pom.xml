@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>dev.demeng</groupId>
+  <artifactId>frost</artifactId>
+  <version>1.12.9</version>
+
+  <properties>
+    <java.version>1.8</java.version>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
+  <name>Frost</name>
+
+  <build>
+    <finalName>${project.name}-${project.version}</finalName>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.8.1</version>
+        <configuration>
+          <source>${java.version}</source>
+          <target>${java.version}</target>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-shade-plugin</artifactId>
+        <version>3.2.4</version>
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <goals>
+              <goal>shade</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <minimizeJar>true</minimizeJar>
+          <createDependencyReducedPom>false</createDependencyReducedPom>
+          <relocations>
+            <relocation>
+              <pattern>dev.demeng.pluginbase</pattern>
+              <shadedPattern>dev.demeng.frost.shaded.pluginbase</shadedPattern>
+            </relocation>
+            <relocation>
+              <pattern>com.mongodb</pattern>
+              <shadedPattern>dev.demeng.frost.shaded.mongodb</shadedPattern>
+            </relocation>
+            <relocation>
+              <pattern>org.bson</pattern>
+              <shadedPattern>dev.demeng.frost.shaded.bson</shadedPattern>
+            </relocation>
+            <relocation>
+              <pattern>revxrsal.commands</pattern>
+              <shadedPattern>dev.demeng.frost.shaded.commands</shadedPattern>
+            </relocation>
+            <relocation>
+              <pattern>org.bstats</pattern>
+              <shadedPattern>dev.demeng.frost.shaded.bstats</shadedPattern>
+            </relocation>
+            <relocation>
+              <pattern>dev.demeng.sentinel.wrapper</pattern>
+              <shadedPattern>dev.demeng.frost.ap.sentinel</shadedPattern>
+            </relocation>
+            <relocation>
+              <pattern>com.google.gson</pattern>
+              <shadedPattern>dev.demeng.frost.lib.gson</shadedPattern>
+            </relocation>
+          </relocations>
+          <filters>
+            <filter>
+              <artifact>*:*</artifact>
+              <excludes>
+                <exclude>META-INF/maven/**</exclude>
+                <exclude>META-INF/**</exclude>
+              </excludes>
+            </filter>
+          </filters>
+          <artifactSet>
+            <excludes>
+              <exclude>META-INF:**</exclude>
+              <exclude>me.clip:**</exclude>
+              <exclude>org.mongodb:bson-record-codec</exclude>
+            </excludes>
+          </artifactSet>
+        </configuration>
+      </plugin>
+    </plugins>
+    <resources>
+      <resource>
+        <directory>src/main/resources</directory>
+        <filtering>true</filtering>
+      </resource>
+    </resources>
+  </build>
+
+  <repositories>
+    <repository>
+      <id>jitpack.io</id>
+      <url>https://jitpack.io</url>
+    </repository>
+    <repository>
+      <id>placeholderapi</id>
+      <url>https://repo.extendedclip.com/content/repositories/placeholderapi/</url>
+    </repository>
+    <repository>
+      <id>demeng-repo</id>
+      <name>Demeng's Repository</name>
+      <url>https://repo.demeng.dev/releases</url>
+    </repository>
+  </repositories>
+
+  <dependencies>
+    <!-- PaperSpigot -->
+    <dependency>
+      <groupId>org.papermc</groupId>
+      <artifactId>spigot</artifactId>
+      <version>1.8.8-R0.1-SNAPSHOT</version>
+      <scope>system</scope>
+      <systemPath>${project.basedir}/libs/PaperSpigot-1.8.8-R0.1-SNAPSHOT.jar</systemPath>
+    </dependency>
+
+    <!-- PluginBase -->
+    <dependency>
+      <groupId>com.github.Demeng7215.PluginBase</groupId>
+      <artifactId>pluginbase-core</artifactId>
+      <version>2576382518</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.github.Demeng7215.PluginBase</groupId>
+      <artifactId>pluginbase-mongo</artifactId>
+      <version>2576382518</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.github.Demeng7215</groupId>
+      <artifactId>PluginBase-Lamp</artifactId>
+      <version>1a71e71107</version>
+    </dependency>
+
+    <!-- KnockbackController -->
+    <dependency>
+      <groupId>me.elb1to.practice.controller</groupId>
+      <artifactId>KnockbackController</artifactId>
+      <version>1.0</version>
+      <systemPath>${project.basedir}/libs/KnockbackController.jar</systemPath>
+      <scope>system</scope>
+    </dependency>
+
+    <!-- Metrics -->
+    <dependency>
+      <groupId>org.bstats</groupId>
+      <artifactId>bstats-bukkit</artifactId>
+      <version>3.0.2</version>
+      <scope>compile</scope>
+    </dependency>
+
+    <!-- WorldEdit -->
+    <dependency>
+      <groupId>com.sk89q</groupId>
+      <artifactId>worldedit</artifactId>
+      <version>6.1</version>
+      <systemPath>${project.basedir}/libs/WorldEdit-6.1.jar</systemPath>
+      <scope>system</scope>
+    </dependency>
+
+    <!-- FastAsyncWorldEdit -->
+    <dependency>
+      <groupId>com.boydti</groupId>
+      <artifactId>fawe-api</artifactId>
+      <version>1.8</version>
+      <systemPath>${project.basedir}/libs/FastAsyncWorldEdit.jar</systemPath>
+      <scope>system</scope>
+    </dependency>
+
+    <!-- PlaceholderAPI -->
+    <dependency>
+      <groupId>me.clip</groupId>
+      <artifactId>placeholderapi</artifactId>
+      <version>2.11.2</version>
+      <scope>provided</scope>
+    </dependency>
+
+    <!-- Sentinel -->
+    <dependency>
+      <groupId>dev.demeng</groupId>
+      <artifactId>sentinel-java-wrapper</artifactId>
+      <version>1.0.6</version>
+      <scope>compile</scope>
+    </dependency>
+
+    <!-- Lombok -->
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <version>1.18.26</version>
+      <scope>provided</scope>
+    </dependency>
+  </dependencies>
+</project>

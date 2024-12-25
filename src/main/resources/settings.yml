@@ -1,0 +1,87 @@
+# Your Frost license key.
+# Join https://demeng.dev/discord and create a support ticket to obtain your key.
+LICENSE-KEY: "NOT_SET"
+
+# Mongo connection details.
+MONGO:
+  # The connection URI.
+  URI: "mongodb://localhost:27017"
+  # The database name.
+  DATABASE: "frost"
+
+PLACEHOLDER-API:
+  PLAYER-KIT-ELO-FORMAT: "&b<kit> &f<position>&8. <player> &7(&f<elo>&7)"
+  PLAYER-KIT-WINSTREAK-FORMAT: "&b<kit> &f<position>&8. <player> &7(&f<wins>&7)"
+
+SETTINGS:
+  OVERRIDE-PLAYER:
+    SHOW-PLAYERS: true # This will override the player-visibility on spawn and show all the online players in the server.
+    VANILLA-TABLIST: true # This will override the tablist and show the vanilla tablist regardless of the setting from the player.
+  GENERAL:
+    TABLIST-ENABLED: true
+    PREMIUM-ENABLED: false
+    NAMETAGS-ENABLED: true
+    GULAG-PVP-WHILE-WAITING: false
+    MAXIMUM-PARTY-SIZE: 32
+    FFA-SAFEZONE-RADIUS: 10
+    PARTY-ALERT-COOLDOWN: 180 # The time is calculated in seconds
+    TOGGLE-PLAYERS-COOLDOWN: 16 # The time is calculated in seconds
+    PARTY-LIMIT-BY-DEFAULT: 12
+    NAMETAGS-PREFIX: "%rank_color%"
+    PREMIUM-QUEUE-KIT: "NoDebuff"
+    PARTY-COOLDOWN-MESSAGE: "&cYou must wait &l<time> <left> &cbefore announcing your party again."
+    TOGGLE-PLAYERS-COOLDOWN-MESSAGE: "&cYou must wait &l<time> <left> &cbefore using that command again."
+  MATCH:
+    REMOVE-BOTTLE: false
+    SHOW-COUNTDOWN-TITLE: true
+    MAX-RANKED-PING: 100
+    RANKEDS-REQUIRED: 10 # If you want to allow players to play ranked instantly set this to 0
+    PING-TOO-HIGH-MESSAGE: "&cYour ping is too high to play ranked... Maximum ping allowed: 25ms"
+    BLOCKED-COMMANDS:
+      - "/gamemode creative"
+      - "/gamemode c"
+      - "/gamemode 1"
+      - "/gmc"
+      - "/kill"
+      - "/disguise"
+      - "/undisguise"
+    QUEUE-PING-LIMIT-SETTING:
+      RANKED: true
+      PREMIUM: true
+      UNRANKED: true
+      MIN-PING-PLUS-PROBABILITY: 0.65
+      MAX-PING-MINUS-PROBABILITY: 0.80
+  LEADERBOARDS:
+    STYLE: "Silex" # Available styles: MMC, MHQ, Silex
+    MENU-TITLE: "&b&lLeaderboards"
+    GENERAL-FORMAT: "&f<position> &8| &b"
+    SHOW-UPDATE-MESSAGE: true
+    UPDATE-TIME: 15 # The time is calculated in minutes
+    UPDATE-MESSAGE: "&8[&b&lFrost&8] &7&oUpdating leaderboards! This could cause minor lag..."
+    WINSTREAK:
+      MENU-TITLE: "&b&lWinstreak Leaderboards"
+
+HOLOGRAM:
+  UPDATE-TIME: 20 # Seconds
+  FORMAT:
+    FORMAT: "&b<number># &f<name> &7» &f<value> &7» <elo_rating>"
+    LINES:
+      - "&b&lPractice"
+      - "&b&lLeaderboards"
+      - "&7"
+      - "&a◉ <kit> ◉"
+      - "&7"
+      - "<top>"
+      - "&7"
+      - "&fNext update in &b<update>"
+  WINSTREAK:
+    FORMAT: "&b<number># &f<name> &7» &f<value>"
+    LINES:
+      - "&b&lPractice Winstreak"
+      - "&b&lLeaderboards"
+      - "&7"
+      - "&a◉ <kit> ◉"
+      - "&7"
+      - "<top>"
+      - "&7"
+      - "&fNext update in &b<update>"

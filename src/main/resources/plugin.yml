@@ -1,0 +1,3 @@
+main: dev.demeng.frost.Frost
+name: Frost
+version: ${project.version}
